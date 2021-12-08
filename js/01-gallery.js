@@ -22,18 +22,22 @@ function onGalleryClick (event){
     const isImage = event.target.classList.contains("gallery__image");
     if (!isImage) { 
         return;
-     }
-
+    }
 
 const modal = basicLightbox.create(`
     <div class="modal">
 <img src= "${event.target.dataset.source}" width="800" height="600">
     </div>
-`)
-
-modal.show()
-modal.close()
-
+`);
+modal.show();
+window.addEventListener('keydown', onKeyboardClick);
+function onKeyboardClick(event){
+    console.log(event.code)
+    if(event.code === 'Escape' ){
+        modal.close()
+        window.removeEventListener('keydown', onKeyboardClick)
+    }
+}
 };
 
 // console.log(galleryMarkup);
