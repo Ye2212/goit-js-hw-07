@@ -26,20 +26,19 @@ function onGalleryClick (event){
 
 const modal = basicLightbox.create(`
     <div class="modal">
-<img src= "${event.target.dataset.source}" width="800" height="600">
+<img src= "${event.target.dataset.source}" class= "js-image" width="800" height="600">
     </div>
 `);
 modal.show();
 window.addEventListener('keydown', onKeyboardClick);
 function onKeyboardClick(event){
-    console.log(event.code)
-    if(event.code === 'Escape' ){
-        modal.close()
-        window.removeEventListener('keydown', onKeyboardClick)
+
+    if(event.code === 'Escape'){
+        modal.close();
+        window.removeEventListener('keydown', onKeyboardClick);
     }
-}
+    }
 };
 
 // console.log(galleryMarkup);
-
 // console.log(galleryItems);
