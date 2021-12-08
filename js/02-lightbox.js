@@ -4,14 +4,14 @@ import { galleryItems } from './gallery-items.js';
 const galleryRef = document.querySelector('.gallery');
 
 const galleryMarkup = galleryItems
-.map(({preview, original, description}) => `
+.map(({preview, original, description}) => `<li>
 <a class="gallery__item" href="${original}">
 <img
 class="gallery__image"
 src="${preview}"
 alt="${description}"
 />
-</a>`).join('');
+</a></li>`).join('');
 
 galleryRef.insertAdjacentHTML('afterbegin', galleryMarkup);
 
