@@ -29,6 +29,10 @@ function onGalleryClick (event){
     //     </div>`, {
         onShow: (modal) =>{
             window.addEventListener('keydown', onKeyboardClick);
+            modal.element().querySelector('.js-image-modal').addEventListener("click", () => {
+                            modal.close();
+                            window.removeEventListener('keydown', onKeyboardClick);
+                        });
             console.log('onShow', modal)
         },
         onClose: (modal) => {
