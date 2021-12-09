@@ -29,26 +29,22 @@ function onGalleryClick (event){
     //     </div>`, {
         onShow: (modal) =>{
             window.addEventListener('keydown', onKeyboardClick);
-            function onKeyboardClick(event){
-                if(event.code === 'Escape'){
-                    modal.close(()=>{ window.removeEventListener('keydown', onKeyboardClick);});
-                    window.removeEventListener('keydown', onKeyboardClick);
-                };
-            };
-            
             console.log('onShow', modal)
+        },
+        onClose: (modal) => {
+            window.removeEventListener('keydown', onKeyboardClick);
+            console.log('onClose', modal)
         }
-        // ,
-        // onClose: (modal) => {
-        //     window.removeEventListener('keydown', onKeyboardClick);
-        //     console.log('onClose', modal)
-
-        // }
         
-    }).show()
-
-
-
+    })
+    modal.show()
+    function onKeyboardClick(event){
+        if(event.code === 'Escape'){
+            modal.close();
+            window.removeEventListener('keydown', onKeyboardClick);
+        };
+    };
+}
 
 // const modal = basicLightbox.create(`
 //     <div class="modal">
@@ -71,7 +67,7 @@ function onGalleryClick (event){
 //     },
 
 // }).show();
-}
+
 
 // console.log(galleryMarkup);
 // console.log(galleryItems);
