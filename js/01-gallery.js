@@ -24,21 +24,60 @@ function onGalleryClick (event){
         return;
     }
 
-const modal = basicLightbox.create(`
-    <div class="modal">
-<img src= "${event.target.dataset.source}" class= "js-image" width="800" height="600">
-    </div>
-`);
-modal.show();
-window.addEventListener('keydown', onKeyboardClick);
-function onKeyboardClick(event){
+    const modal = basicLightbox.create(` <div class="modal">
+    // <img src= "${event.target.dataset.source}" class= "js-image-modal" width="800" height="600">
+    //     </div>`, {
+        onShow: (modal) =>{
+            window.addEventListener('keydown', onKeyboardClick);
+            function onKeyboardClick(event){
+                if(event.code === 'Escape'){
+                    modal.close(()=>{ window.removeEventListener('keydown', onKeyboardClick);});
+                    window.removeEventListener('keydown', onKeyboardClick);
+                };
+            };
+            
+            console.log('onShow', modal)
+        }
+        // ,
+        // onClose: (modal) => {
+        //     window.removeEventListener('keydown', onKeyboardClick);
+        //     console.log('onClose', modal)
 
-    if(event.code === 'Escape'){
-        modal.close();
-        window.removeEventListener('keydown', onKeyboardClick);
-    }
-    }
-};
+        // }
+        
+    }).show()
+
+
+
+
+// const modal = basicLightbox.create(`
+//     <div class="modal">
+// <img src= "${event.target.dataset.source}" class= "js-image-modal" width="800" height="600">
+//     </div>`
+//     , {
+//     onShow: (modal) => {
+//         window.addEventListener('keydown', onKeyboardClick);
+
+//         function onKeyboardClick(event){
+//             if(event.code === 'Escape'){
+//                 modal.close();
+//                 window.removeEventListener('keydown', onKeyboardClick);
+//             };
+//         };
+//         modal.element().querySelector('.js-image-modal').addEventListener("click", () => {
+//             modal.close();
+//             window.removeEventListener('keydown', onKeyboardClick);
+//         });
+//     },
+
+// }).show();
+}
 
 // console.log(galleryMarkup);
 // console.log(galleryItems);
+// const instance = basicLightbox.create(html, {
+//     onShow: (instance) => console.log('onShow', instance),
+//     onClose: (instance) => console.log('onClose', instance)
+// })
+
+// instance.show((instance) => console.log('finished show()', instance))
