@@ -45,7 +45,6 @@ function onGalleryClick (event){
     function onKeyboardClick(event){
         if(event.code === 'Escape'){
             modal.close();
-            window.removeEventListener('keydown', onKeyboardClick);
         };
     };
 }
