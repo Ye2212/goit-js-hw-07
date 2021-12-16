@@ -13,7 +13,7 @@ alt="${description}"
 />
 </a></li>`).join('');
 
-galleryRef.insertAdjacentHTML('afterbegin', galleryMarkup);
+galleryRef.insertAdjacentHTML('beforeend', galleryMarkup);
 
 let gallery = new SimpleLightbox('.gallery a', { 
         captionsData: 'alt',
